@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bypass Disabled Button</title>
+    <script src="secret.js"></script> <!-- Load external JavaScript -->
+</head>
+<body>
+    <h2>Secret Code Challenge</h2>
+    <p>Find a way to enable the button and reveal the code.</p>
+    
+    <button id="submitButton" disabled>Submit</button>
+    <p id="secretCode" style="display: none; color: green; font-weight: bold;"></p>
+
+    <script>
+        // Wait for secret.js to load before setting up button event
+        setTimeout(() => {
+            setupButton(); // Call function from external file
+        }, 3000); // 3-second delay to prevent easy debugging
+    </script>
+</body>
+</html>
