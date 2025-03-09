@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find the Correct Button</title>
     <script src="secret.js"></script>
+    <style>
+        #buttonsContainer {
+            display: flex;
+            white-space: nowrap;
+            overflow-x: auto;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+        }
+        button {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <h2>Find the Correct Button</h2>
@@ -31,7 +44,6 @@
                     checkButton(i);
                 });
                 container.appendChild(btn);
-                container.appendChild(document.createElement("br"));
             }
         }
 
