@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find the Correct Button</title>
-    <script src="secret.js"></script> <!-- External script for security -->
+    <script src="secret.js"></script>
 </head>
 <body>
     <h2>Find the Correct Button</h2>
     <p>One of these 100 buttons will reveal the secret code if enabled and clicked.</p>
 
-    <div id="buttonsContainer"></div> <!-- Buttons will be generated here -->
+    <div id="buttonsContainer"></div>
     
     <p id="secretCode" style="display: none; color: green; font-weight: bold;"></p>
 
     <script>
-        const totalButtons = 100;
-        const correctButtonIndex = Math.floor(Math.random() * totalButtons); // Random correct button
+        const totalButtons = 1000;
+        const correctButtonIndex = Math.floor(Math.random() * totalButtons);
 
         function createButtons() {
             const container = document.getElementById("buttonsContainer");
             for (let i = 0; i < totalButtons; i++) {
                 let btn = document.createElement("button");
-                btn.innerText = "Button " + (i + 1);
+                if(i == correctButtonIndex - 1)
+                    btn.innerText = "H4CK3D!";
+                else
+                    btn.innerText = "HACKED!";
                 btn.id = "btn" + i;
-                btn.disabled = true; // All buttons are disabled initially
+                btn.disabled = true;
                 btn.addEventListener("click", function() {
-                    checkButton(i); // Call external function
+                    checkButton(i);
                 });
                 container.appendChild(btn);
-                container.appendChild(document.createElement("br")); // Line break
+                container.appendChild(document.createElement("br"));
             }
         }
 
-        // Wait for secret.js to load before setting up buttons
         setTimeout(() => {
-            setupSecret(correctButtonIndex); // Call function from external file
-            createButtons(); // Generate buttons after secret.js loads
+            setupSecret(correctButtonIndex);
+            createButtons();
         }, 3000);
     </script>
 </body>
