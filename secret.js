@@ -8,7 +8,7 @@ function setupSecret(correctIndex) {
     }
 
     window.checkButton = function(buttonIndex) {
-        if (buttonIndex === correctIndex) {
+        if (buttonIndex == correctIndex) {
             let secret = decrypt(encodedSecret, key);
             let codeElement = document.getElementById("secretCode");
             codeElement.innerText = secret;
