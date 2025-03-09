@@ -3,20 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bypass Disabled Button</title>
-    <script src="secret.js"></script>
+    <title>Find the Correct Button</title>
+    <script src="secret.js"></script> <!-- External script for security -->
 </head>
 <body>
-    <h2>Secret Code Challenge</h2>
-    <p>Find a way to enable the button and reveal the code.</p>
+    <h2>Find the Correct Button</h2>
+    <p>One of these 100 buttons will reveal the secret code if enabled and clicked.</p>
+
+    <div id="buttonsContainer"></div> <!-- Buttons will be generated here -->
     
-    <button id="submitButton" disabled>Submit</button>
     <p id="secretCode" style="display: none; color: green; font-weight: bold;"></p>
 
     <script>
+        const totalButtons = 100;
+        const correctButtonIndex = Math.floor(Math.random() * totalButtons); // Random correct button
+
+        function createButtons() {
+            const container = document.getElementById("buttonsContainer");
+            for (let i = 0; i < totalButtons; i++) {
+                let btn = document.createElement("button");
+                btn.innerText = "Button " + (i + 1);
+                btn.id = "btn" + i;
+                btn.disabled = true; // All buttons are disabled initially
+                btn.addEventListener("click", function() {
+                    checkButton(i); // Call external function
+                });
+                container.appendChild(btn);
+                container.appendChild(document.createElement("br")); // Line break
+            }
+        }
+
+        // Wait for secret.js to load before setting up buttons
         setTimeout(() => {
-            setupButton();
+            setupSecret(correctButtonIndex); // Call function from external file
+            createButtons(); // Generate buttons after secret.js loads
         }, 3000);
     </script>
 </body>
 </html>
+
