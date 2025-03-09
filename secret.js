@@ -1,5 +1,5 @@
-function setupButton() {
-    let encodedSecret = window.btoa("^BCYuCYu@_Y^u^BOuHOMCDDCDM"); // Encrypted version of "H4CK3D!" (Base64 + XOR)
+function setupSecret(correctIndex) {
+    let encodedSecret = "SCQHBB4O"; // Encrypted version of "H4CK3D!" (Base64 + XOR)
     let key = 42; // XOR key (can be changed)
 
     function decrypt(base64Str, xorKey) {
@@ -7,10 +7,14 @@ function setupButton() {
         return decoded.split("").map(c => String.fromCharCode(c.charCodeAt(0) ^ xorKey)).join(""); // XOR decrypt
     }
 
-    document.getElementById("submitButton").addEventListener("click", function() {
-        let secret = decrypt(encodedSecret, key); // Decrypt the secret
-        let codeElement = document.getElementById("secretCode");
-        codeElement.innerText = "Secret Code: " + secret;
-        codeElement.style.display = "block";
-    });
+    window.checkButton = function(buttonIndex) {
+        if (buttonIndex === correctIndex) {
+            let secret = decrypt(encodedSecret, key); // Decrypt the secret
+            let codeElement = document.getElementById("secretCode");
+            codeElement.innerText = "Secret Code: " + secret;
+            codeElement.style.display = "block";
+        } else {
+            alert("Wrong button! Try again.");
+        }
+    };
 }
