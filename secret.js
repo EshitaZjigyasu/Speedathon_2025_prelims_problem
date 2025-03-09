@@ -1,5 +1,5 @@
 function setupSecret(correctIndex) {
-    let encodedSecret = "this_is_it";
+    let encodedSecret = window.btoa("dGhpc19pc19pdA==");
     let key = 42;
 
     function decrypt(base64Str, xorKey) {
